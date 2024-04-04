@@ -1,3 +1,3 @@
-## Sea of Mines
+# Sea of Mines
 
 Ouais le jeu vidéo là
