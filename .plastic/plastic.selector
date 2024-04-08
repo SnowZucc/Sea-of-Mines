@@ -1,0 +1,4 @@
+repository "Sea of Mines Standard@SnowZuccMulti@cloud"
+  path "/"
+    br "/main"
+    co "/main"
