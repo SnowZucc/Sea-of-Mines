@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
     public float gold;
     public float level;
     public float closestGoldDistance;
+    public bool wait = false;
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI goldText;
+    public TextMeshProUGUI levelUpText;
 
     // Update is called once per frame
     void Update()
@@ -29,6 +34,52 @@ public class PlayerScript : MonoBehaviour
         {
             level += 1;
             gold -= 100;
+            levelText.text = "Level  " + level.ToString();
+            StartCoroutine(displayLevelUpText());
+        }
+
+        if (closestGoldDistance <= 5 && wait==false)
+        {
+            Gold goldScript = closestGoldObject.GetComponent<Gold>();
+            StartCoroutine(MineGoldOverTime(goldScript));
         }
     }
+
+IEnumerator MineGoldOverTime(Gold goldScript)
+{
+    while (true)
+    {
+        wait = true;
+        if (goldScript != null && goldScript.gameObject != null)
+        {
+            float distanceToGold = Vector3.Distance(transform.position, goldScript.gameObject.transform.position);
+            if (distanceToGold <= 5)
+            {
+                goldScript.mineGold();
+                gold += 1;
+                goldText.text = "Gold  " + gold.ToString();
+            }
+            else
+            {
+                wait = false;
+                break; 
+            }
+        }
+        else
+        {
+            wait = false;
+            break; 
+        }
+        yield return new WaitForSeconds(1); // wait for 1 second
+        wait = false;
+    }
+}
+
+IEnumerator displayLevelUpText()
+{
+    levelUpText.text = "You have advanced to the level " + level.ToString() + "!";
+    levelUpText.gameObject.SetActive(true);
+    yield return new WaitForSeconds(5);
+    levelUpText.gameObject.SetActive(false);
+}
 }

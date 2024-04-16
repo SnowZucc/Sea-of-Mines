@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Gold : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float remainingGold = 100;
 
-    // Update is called once per frame
-    void Update()
+    public void mineGold()
     {
-        
+        remainingGold -= 1;
+        if (remainingGold <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
