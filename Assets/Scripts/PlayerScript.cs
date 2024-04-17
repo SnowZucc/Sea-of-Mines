@@ -73,7 +73,7 @@ IEnumerator MineGoldOverTime(Gold goldScript)
             wait = false;
             break; 
         }
-        yield return new WaitForSeconds(1); // wait for 1 second
+        yield return new WaitForSeconds(1);
         wait = false;
     }
 }
