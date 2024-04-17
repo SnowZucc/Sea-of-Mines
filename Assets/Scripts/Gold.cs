@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Gold : MonoBehaviour
 {
-    public float remainingGold = 100;
+    public int remainingGold;
 
-    public void mineGold()
+    void Awake()
     {
-        remainingGold -= 1;
+        remainingGold = Random.Range(50, 100); 
+    }
+
+    public void mineGold(int numberOfGold)
+    {
+        remainingGold -= numberOfGold;
         if (remainingGold <= 0)
         {
             Destroy(gameObject);

@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI levelUpText;
+    public int randomNumberOfGold;
 
     // Update is called once per frame
     void Update()
@@ -34,7 +35,6 @@ public class PlayerScript : MonoBehaviour
         {
             level += 1;
             gold -= 100;
-            levelText.text = "Level  " + level.ToString();
             StartCoroutine(displayLevelUpText());
         }
 
@@ -43,6 +43,9 @@ public class PlayerScript : MonoBehaviour
             Gold goldScript = closestGoldObject.GetComponent<Gold>();
             StartCoroutine(MineGoldOverTime(goldScript));
         }
+
+        goldText.text = "Gold  " + gold.ToString();
+        levelText.text = "Level  " + level.ToString();
     }
 
 IEnumerator MineGoldOverTime(Gold goldScript)
@@ -55,9 +58,9 @@ IEnumerator MineGoldOverTime(Gold goldScript)
             float distanceToGold = Vector3.Distance(transform.position, goldScript.gameObject.transform.position);
             if (distanceToGold <= 5)
             {
-                goldScript.mineGold();
-                gold += 1;
-                goldText.text = "Gold  " + gold.ToString();
+                randomNumberOfGold = Random.Range(5, 16);
+                goldScript.mineGold(randomNumberOfGold);
+                gold += randomNumberOfGold;
             }
             else
             {
