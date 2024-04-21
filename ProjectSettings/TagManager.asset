@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gold
-  - Treasure
+  - Map part
   layers:
   - Default
   - TransparentFX

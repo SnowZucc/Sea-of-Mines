@@ -6,24 +6,38 @@ public class PlayerScript : MonoBehaviour
 {
     public float gold;
     public float level;
-    public float treasure;
+    public float mapPart;
 
     public float closestGoldDistance;
-    public float closestTreasureDistance;
+    public float closestMapPartDistance;
 
     public int randomNumberOfGold;
     public bool wait = false;
 
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI goldText;
-    public TextMeshProUGUI treasureText;
+    public TextMeshProUGUI mapPartText;
 
     public TextMeshProUGUI levelUpText;
-    public TextMeshProUGUI treasureFoundText;
+    public TextMeshProUGUI mapPartFoundText;
+
+    public GameObject CenterMapImage1;
+    public GameObject CenterMapImage2;
+    public GameObject CenterMapImage3;
+    public GameObject CenterMapImage4;
+
+    public GameObject RightMapImage1;
+    public GameObject RightMapImage2;
+    public GameObject RightMapImage3;
+    public GameObject RightMapImage4;
+
 
     // Update is called once per frame
     void Update()
     {
+        // Force the player to stay vertially straight (water bug)
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
         // Gold part
         // Function to get the closest gold object
         GameObject[] goldObjects = GameObject.FindGameObjectsWithTag("Gold");
@@ -59,29 +73,29 @@ public class PlayerScript : MonoBehaviour
         goldText.text = "Gold  " + gold.ToString();
         levelText.text = "Level  " + level.ToString();
 
-        // Treasure part
-        GameObject[] treasureObjects = GameObject.FindGameObjectsWithTag("Treasure");
-        GameObject closestTreasureObject = null;
-        closestTreasureDistance = float.MaxValue;
+        // Map parts
+        GameObject[] mapPartObjects = GameObject.FindGameObjectsWithTag("Map part");
+        GameObject closestMapPartObject = null;
+        closestMapPartDistance = float.MaxValue;
 
         // Function to get the closest treasure object
-        foreach (GameObject treasureObject in treasureObjects)
+        foreach (GameObject mapPartObject in mapPartObjects)
         {
-            float distance = Vector3.Distance(transform.position, treasureObject.transform.position);
-            if (distance < closestTreasureDistance)
+            float distance = Vector3.Distance(transform.position, mapPartObject.transform.position);
+            if (distance < closestMapPartDistance)
             {
-                closestTreasureDistance = distance;
-                closestTreasureObject = treasureObject;
+                closestMapPartDistance = distance;
+                closestMapPartObject = mapPartObject;
             }
         }
 
-        // Found treasure function
-        if (closestTreasureDistance <= 5)
+        // Found map part function
+        if (closestMapPartDistance <= 5)
         {
-            Destroy(closestTreasureObject);
-            treasure += 1;
+            Destroy(closestMapPartObject);
+            mapPart += 1;
             StartCoroutine(displayTreasureFoundText());
-            treasureText.text = "Treasure  " + treasure.ToString();
+            mapPartText.text = "Map parts " + mapPart.ToString();
         }
     }
 
@@ -127,9 +141,67 @@ IEnumerator displayLevelUpText()
 
 IEnumerator displayTreasureFoundText()
 {
-    levelUpText.text = "You have found " + treasure.ToString() + "treasure part out of 4 !";
-    levelUpText.gameObject.SetActive(true);
+    mapPartFoundText.text = "You have found " + mapPart.ToString() + " map parts out of 3 !";
+    mapPartFoundText.gameObject.SetActive(true);
+
+    if (mapPart == 1)
+    {
+        CenterMapImage1.SetActive(true);
+    }
+    else if (mapPart == 2)
+    {
+        CenterMapImage1.SetActive(true);
+        CenterMapImage2.SetActive(true);
+    }
+    else if (mapPart == 3)
+    {
+        CenterMapImage1.SetActive(true);
+        CenterMapImage2.SetActive(true);
+        CenterMapImage3.SetActive(true);
+    }
+    else if (mapPart == 4)
+    {
+        CenterMapImage1.SetActive(true);
+        CenterMapImage2.SetActive(true);
+        CenterMapImage3.SetActive(true);
+        CenterMapImage4.SetActive(true);
+    }
+    
     yield return new WaitForSeconds(5);
-    levelUpText.gameObject.SetActive(false);
+    mapPartFoundText.gameObject.SetActive(false);
+
+    if (mapPart == 1)
+    {
+        CenterMapImage1.SetActive(false);
+        RightMapImage1.SetActive(true);
+    }
+    else if (mapPart == 2)
+    {
+        CenterMapImage1.SetActive(false);
+        CenterMapImage2.SetActive(false);
+        RightMapImage1.SetActive(true);
+        RightMapImage2.SetActive(true);
+    }
+    else if (mapPart == 3)
+    {
+        CenterMapImage1.SetActive(false);
+        CenterMapImage2.SetActive(false);
+        CenterMapImage3.SetActive(false);
+        RightMapImage1.SetActive(true);
+        RightMapImage2.SetActive(true);
+        RightMapImage3.SetActive(true);
+    }
+    else if (mapPart == 4)
+    {
+        CenterMapImage1.SetActive(false);
+        CenterMapImage2.SetActive(false);
+        CenterMapImage3.SetActive(false);
+        CenterMapImage4.SetActive(false);
+        RightMapImage1.SetActive(true);
+        RightMapImage2.SetActive(true);
+        RightMapImage3.SetActive(true);
+        RightMapImage4.SetActive(true);
+    }
+
 }
 }
