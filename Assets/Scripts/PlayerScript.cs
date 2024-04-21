@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
 
     public TextMeshProUGUI levelUpText;
     public TextMeshProUGUI mapPartFoundText;
+    public TextMeshProUGUI allMapsPartsFoundText;
 
     public GameObject CenterMapImage1;
     public GameObject CenterMapImage2;
@@ -30,6 +31,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject RightMapImage2;
     public GameObject RightMapImage3;
     public GameObject RightMapImage4;
+    public GameObject Waypoint;
 
 
     // Update is called once per frame
@@ -141,8 +143,11 @@ IEnumerator displayLevelUpText()
 
 IEnumerator displayTreasureFoundText()
 {
-    mapPartFoundText.text = "You have found " + mapPart.ToString() + " map parts out of 3 !";
+    if (mapPart !=4)
+    {
+    mapPartFoundText.text = "You have found " + mapPart.ToString() + " map parts out of 4 !";
     mapPartFoundText.gameObject.SetActive(true);
+    }
 
     if (mapPart == 1)
     {
@@ -165,6 +170,8 @@ IEnumerator displayTreasureFoundText()
         CenterMapImage2.SetActive(true);
         CenterMapImage3.SetActive(true);
         CenterMapImage4.SetActive(true);
+
+        allMapsPartsFoundText.gameObject.SetActive(true);
     }
     
     yield return new WaitForSeconds(5);
@@ -192,6 +199,7 @@ IEnumerator displayTreasureFoundText()
         RightMapImage3.SetActive(true);
     }
     else if (mapPart == 4)
+
     {
         CenterMapImage1.SetActive(false);
         CenterMapImage2.SetActive(false);
@@ -201,6 +209,9 @@ IEnumerator displayTreasureFoundText()
         RightMapImage2.SetActive(true);
         RightMapImage3.SetActive(true);
         RightMapImage4.SetActive(true);
+
+        allMapsPartsFoundText.gameObject.SetActive(false);
+        Waypoint.SetActive(true);
     }
 
 }
