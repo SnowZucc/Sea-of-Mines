@@ -254,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 32505764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.411853, y: 7.6480002, z: -6.2367144}
+  m_LocalPosition: {x: 8.411853, y: 8.603, z: -6.2367144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -855,7 +855,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259583562}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 307d77a114b9001428a084fa81f30fde, type: 3}
   m_Name: 
@@ -908,6 +908,53 @@ MonoBehaviour:
   _dragInWaterForward: 1
   _dragInWaterRotational: 0.2
   _debugDraw: 0
+--- !u!114 &259583574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259583562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b00f57de5c8bf42b3f34eefc70b93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &259583575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259583562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d630c62df8c15643b44564d699aff72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: 0
+  level: 0
+  mapPart: 0
+  closestGoldDistance: 0
+  closestMapPartDistance: 0
+  randomNumberOfGold: 0
+  wait: 0
+  levelText: {fileID: 397318490}
+  goldText: {fileID: 206309052}
+  mapPartText: {fileID: 1013374232}
+  levelUpText: {fileID: 109544431}
+  mapPartFoundText: {fileID: 150465146}
+  allMapsPartsFoundText: {fileID: 1263684180}
+  CenterMapImage1: {fileID: 1265975038}
+  CenterMapImage2: {fileID: 565705997}
+  CenterMapImage3: {fileID: 1294244863}
+  CenterMapImage4: {fileID: 1751580126}
+  RightMapImage1: {fileID: 300507915}
+  RightMapImage2: {fileID: 338282592}
+  RightMapImage3: {fileID: 496371332}
+  RightMapImage4: {fileID: 1620567706}
+  Waypoint: {fileID: 1818620132}
 --- !u!1 &272269707
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,7 +3347,7 @@ Transform:
   m_GameObject: {fileID: 1305515853}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0076201055, y: 0.9899464, z: -0.058727656, w: 0.1284488}
-  m_LocalPosition: {x: 8.411853, y: 7.6480002, z: -6.2367144}
+  m_LocalPosition: {x: 8.411853, y: 8.603, z: -6.2367144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3754,7 +3801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084783896061439485, guid: f8ff85098988b394a85425a49a54ae6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.89
+      value: 4.845
       objectReference: {fileID: 0}
     - target: {fileID: 1084783896061439485, guid: f8ff85098988b394a85425a49a54ae6f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5064,7 +5111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cf5b88beb6b27a41a634086b398d54b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -67.7
+      value: -24.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cf5b88beb6b27a41a634086b398d54b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5595,7 +5642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cf5b88beb6b27a41a634086b398d54b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.8
+      value: -65.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cf5b88beb6b27a41a634086b398d54b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5673,6 +5720,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cf5b88beb6b27a41a634086b398d54b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 259583573}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cf5b88beb6b27a41a634086b398d54b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 259583575}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cf5b88beb6b27a41a634086b398d54b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 259583574}
     - targetCorrespondingSourceObject: {fileID: -3756473180518285571, guid: 9cf5b88beb6b27a41a634086b398d54b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 856821767}

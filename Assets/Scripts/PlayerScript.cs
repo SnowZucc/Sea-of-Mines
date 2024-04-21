@@ -32,6 +32,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject RightMapImage3;
     public GameObject RightMapImage4;
     public GameObject Waypoint;
+    public GameObject closestGoldObject { get; private set; }
 
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class PlayerScript : MonoBehaviour
         // Gold part
         // Function to get the closest gold object
         GameObject[] goldObjects = GameObject.FindGameObjectsWithTag("Gold");
-        GameObject closestGoldObject = null;
+        closestGoldObject = null;
         closestGoldDistance = float.MaxValue;
 
         foreach (GameObject goldObject in goldObjects)
