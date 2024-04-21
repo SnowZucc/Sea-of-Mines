@@ -33,6 +33,8 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection = moveDirection * movementSpeed;
 
         Vector3 movementVelocity = moveDirection;
+        // Preserve the existing y velocity (gravity, etc.)
+        movementVelocity.y = playerRigidbody.velocity.y;
         playerRigidbody.velocity = movementVelocity;
     }
 
@@ -52,6 +54,10 @@ public class PlayerLocomotion : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
         Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // Preserve the existing x and z rotation (tilting due to waves, etc.)
+        playerRotation.x = transform.rotation.x;
+        playerRotation.z = transform.rotation.z;
 
         transform.rotation = playerRotation;
     }
