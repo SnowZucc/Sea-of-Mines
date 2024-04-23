@@ -6,6 +6,8 @@ public class EnemyAI : MonoBehaviour
     public Transform target; 
     private NavMeshAgent agent; 
 
+    public GameObject closestGoldObject;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
