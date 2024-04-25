@@ -6,5 +6,6 @@ public class HideMouse : MonoBehaviour
 void Start()
 {
     Cursor.visible = false; 
+    QualitySettings.vSyncCount = 1;
 }
 }

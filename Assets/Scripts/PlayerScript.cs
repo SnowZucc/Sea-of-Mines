@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
     public float level;
     public float mapPart;
 
+    public float distanceToMine;
     public float closestGoldDistance;
     public float closestMapPartDistance;
 
@@ -66,7 +67,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         // Mine gold coroutine
-        if (closestGoldDistance <= 5 && wait==false)
+        if (closestGoldDistance <= distanceToMine && wait==false)
         {
             Gold goldScript = closestGoldObject.GetComponent<Gold>();
             StartCoroutine(MineGoldOverTime(goldScript));
@@ -93,7 +94,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         // Found map part function
-        if (closestMapPartDistance <= 5)
+        if (closestMapPartDistance <= distanceToMine)
         {
             Destroy(closestMapPartObject);
             mapPart += 1;
@@ -111,7 +112,7 @@ IEnumerator MineGoldOverTime(Gold goldScript)
         if (goldScript != null && goldScript.gameObject != null)
         {
             float distanceToGold = Vector3.Distance(transform.position, goldScript.gameObject.transform.position);
-            if (distanceToGold <= 5)
+            if (distanceToGold <= distanceToMine)
             {
                 randomNumberOfGold = Random.Range(5, 16);
                 goldScript.mineGold(randomNumberOfGold);
