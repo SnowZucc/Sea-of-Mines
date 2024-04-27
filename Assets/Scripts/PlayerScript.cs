@@ -1,3 +1,8 @@
+// This is the script that is attached to every player or AI.
+// It calculates various things such as the distance to the closest gold, the distance to the closest map part, the total gold in the map, etc...
+// It also contains the coroutine to mine gold over time, and the coroutines to display the level up and treasure found texts.
+// It has all the UI elements
+
 using System.Collections;
 using UnityEngine;
 using TMPro;
