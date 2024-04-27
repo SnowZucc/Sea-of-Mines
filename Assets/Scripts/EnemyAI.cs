@@ -22,7 +22,7 @@ void Start()
 IEnumerator SwitchToSearchGold()
 {
     Debug.Log("Wait time");
-    yield return new WaitForSeconds(Random.Range(60, 300)); // wait for a random time between 1 and 5 minutes
+    yield return new WaitForSeconds(Random.Range(30, 60)); // wait for a random time between 1 and 5 minutes
     Debug.Log("Wait time over");
     phase = "searchGold"; // and then start searching gold
 }

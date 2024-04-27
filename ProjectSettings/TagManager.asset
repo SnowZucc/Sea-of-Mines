@@ -7,6 +7,7 @@ TagManager:
   - Gold
   - Map part
   - Treasure
+  - Player boat
   layers:
   - Default
   - TransparentFX

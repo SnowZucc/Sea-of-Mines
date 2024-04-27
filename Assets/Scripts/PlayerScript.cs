@@ -85,6 +85,10 @@ public class PlayerScript : MonoBehaviour
             if (!isAI)
             {
                 StartCoroutine(displayLevelUpText());
+                GameObject playerBoat = GameObject.FindWithTag("Player boat");
+                PlayerLocomotion playerLocomotion = playerBoat.GetComponent<PlayerLocomotion>();
+                playerLocomotion.movementSpeed +=2;
+
             }
         }
 
@@ -234,7 +238,7 @@ IEnumerator displayInsufficientLevel()
 
 IEnumerator displayLevelUpText()
 {
-    levelUpText.text = "You have advanced to the level " + level.ToString() + "!";
+    levelUpText.text = "You have advanced to the level " + level.ToString() + "! Your boat is faster now.";
     levelUpText.gameObject.SetActive(true);
     yield return new WaitForSeconds(5);
     levelUpText.gameObject.SetActive(false);

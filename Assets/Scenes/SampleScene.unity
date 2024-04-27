@@ -719,7 +719,7 @@ Transform:
   m_GameObject: {fileID: 32505764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 882.3606, y: 13.628, z: -283.15335}
+  m_LocalPosition: {x: 884.07855, y: 13.628, z: -312.99408}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19361,7 +19361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181319643}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00257588, y: 0.9967933, z: -0.03593588, w: 0.07145004}
+  m_LocalRotation: {x: 0.03602454, y: 0.014040523, z: -0.00050618185, w: 0.99925214}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19445,7 +19445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185816473}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0042340173, y: 0.99569035, z: -0.0590684, w: 0.07137099}
+  m_LocalRotation: {x: 0.059214108, y: 0.014024972, z: -0.00083201827, w: 0.9981465}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21430,8 +21430,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305515853}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0042340183, y: 0.9956903, z: -0.05906842, w: 0.071371004}
-  m_LocalPosition: {x: 882.3606, y: 13.628, z: -283.15335}
+  m_LocalRotation: {x: 0.059214123, y: 0.014024954, z: -0.00083201757, w: 0.9981465}
+  m_LocalPosition: {x: 884.07855, y: 13.628, z: -312.99408}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23878,7 +23878,7 @@ MonoBehaviour:
   gold: 0
   level: 0
   mapPart: 0
-  distanceToMine: 20
+  distanceToMine: 10
   closestGoldDistance: 0
   closestMapPartDistance: 0
   closestTreasureDistance: 0
@@ -29214,6 +29214,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player boat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a866195f9f4f2f244a9097f6e8f8a4d8, type: 3}
+      propertyPath: m_TagString
+      value: Player boat
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -31755,7 +31759,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018280477}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005897062, y: 0.9940423, z: -0.08226944, w: 0.07125283}
+  m_LocalRotation: {x: 0.082472384, y: 0.014001772, z: -0.0011588219, w: 0.99649435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32806,7 +32810,7 @@ Transform:
   m_GameObject: {fileID: 2069886488}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 500, y: 4.94, z: -500}
+  m_LocalPosition: {x: 500, y: 5.25, z: -500}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -34097,5 +34101,5 @@ SceneRoots:
   - {fileID: 1056497975}
   - {fileID: 898119659}
   - {fileID: 1198941949}
-  - {fileID: 2069886489}
   - {fileID: 1235343120}
+  - {fileID: 2069886489}
