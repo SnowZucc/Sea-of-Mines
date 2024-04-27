@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     public float distanceToMine;
     public float closestGoldDistance;
     public float closestMapPartDistance;
+    public float closestTreasureDistance;
 
     public int randomNumberOfGold;
     public bool wait = false;
@@ -28,7 +29,7 @@ public class PlayerScript : MonoBehaviour
     public TextMeshProUGUI mapPartFoundText;
     public TextMeshProUGUI allMapsPartsFoundText;
 
-        public TextMeshProUGUI totalGoldInMapText;
+    public TextMeshProUGUI totalGoldInMapText;
 
     public GameObject CenterMapImage1;
     public GameObject CenterMapImage2;
@@ -42,7 +43,16 @@ public class PlayerScript : MonoBehaviour
     public GameObject Waypoint;
     public GameObject closestGoldObject { get; private set; }
 
+    public GameObject Wall;
+
     public float totalGoldInMap;
+
+    public bool isAI;
+
+    public AudioClip pickaxeSoundEffect;
+    public AudioClip paperSoundEffect;
+    public AudioClip goldSoundEffect;
+    private bool isGoldSoundPlaying = false;
 
 
     // Update is called once per frame
@@ -72,7 +82,10 @@ public class PlayerScript : MonoBehaviour
         {
             level += 1;
             gold -= 100;
-            StartCoroutine(displayLevelUpText());
+            if (!isAI)
+            {
+                StartCoroutine(displayLevelUpText());
+            }
         }
 
         // Mine gold coroutine
@@ -83,15 +96,18 @@ public class PlayerScript : MonoBehaviour
         }
 
         // Displaying the gold and level
+        if (!isAI)
+        {
         goldText.text = "Gold  " + gold.ToString();
         levelText.text = "Level  " + level.ToString();
+        }
 
         // Map parts
         GameObject[] mapPartObjects = GameObject.FindGameObjectsWithTag("Map part");
         GameObject closestMapPartObject = null;
         closestMapPartDistance = float.MaxValue;
 
-        // Function to get the closest treasure object
+        // Function to get the closest map part object
         foreach (GameObject mapPartObject in mapPartObjects)
         {
             float distance = Vector3.Distance(transform.position, mapPartObject.transform.position);
@@ -102,8 +118,22 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
+        // Same for the final treasure
+        GameObject[] treasureObjects = GameObject.FindGameObjectsWithTag("Treasure");
+        GameObject closestTreasureObject = null;
+        closestTreasureDistance = float.MaxValue;
+        foreach (GameObject treasureObject in treasureObjects)
+        {
+            float distance = Vector3.Distance(transform.position, treasureObject.transform.position);
+            if (distance < closestTreasureDistance)
+            {
+                closestTreasureDistance = distance;
+                closestTreasureObject = treasureObject;
+            }
+        }
+
         // Found map part function
-        if (closestMapPartDistance <= distanceToMine)
+        if (closestMapPartDistance <= 5 && !isAI)
         {
             if (level >= 3)
                 {
@@ -115,6 +145,19 @@ public class PlayerScript : MonoBehaviour
             else
             {
                 StartCoroutine(displayInsufficientLevel());
+            }
+        }
+
+        // Found treasure function
+        if (closestTreasureDistance <= 5 && !isAI)
+        {
+            if (level >= 3 && mapPart == 4)
+                {
+                StartCoroutine(displayFinalTreasureFoundText());
+                }
+            else
+            {
+                StartCoroutine(displayInsufficientMapParts());
             }
         }
 
@@ -150,6 +193,7 @@ public class PlayerScript : MonoBehaviour
 // The coroutine to mine gold over time (I struggled a lot with this one)
 IEnumerator MineGoldOverTime(Gold goldScript)
 {
+    AudioSource audioSource = GetComponent<AudioSource>();
     while (true)
     {
         wait = true;
@@ -158,9 +202,10 @@ IEnumerator MineGoldOverTime(Gold goldScript)
             float distanceToGold = Vector3.Distance(transform.position, goldScript.gameObject.transform.position);
             if (distanceToGold <= distanceToMine)
             {
-                randomNumberOfGold = Random.Range(5, 16);
+                randomNumberOfGold = Random.Range(3, 10);
                 goldScript.mineGold(randomNumberOfGold);
                 gold += randomNumberOfGold;
+                audioSource.PlayOneShot(pickaxeSoundEffect);
             }
             else
             {
@@ -197,10 +242,12 @@ IEnumerator displayLevelUpText()
 
 IEnumerator displayTreasureFoundText()
 {
+    AudioSource audioSource = GetComponent<AudioSource>();
     if (mapPart !=4)
     {
     mapPartFoundText.text = "You have found " + mapPart.ToString() + " map parts out of 4 !";
     mapPartFoundText.gameObject.SetActive(true);
+    audioSource.PlayOneShot(paperSoundEffect);
     }
 
     if (mapPart == 1)
@@ -226,6 +273,7 @@ IEnumerator displayTreasureFoundText()
         CenterMapImage4.SetActive(true);
 
         allMapsPartsFoundText.gameObject.SetActive(true);
+        audioSource.PlayOneShot(paperSoundEffect);
     }
     
     yield return new WaitForSeconds(5);
@@ -266,7 +314,47 @@ IEnumerator displayTreasureFoundText()
 
         allMapsPartsFoundText.gameObject.SetActive(false);
         Waypoint.SetActive(true);
+        Wall.SetActive(false);
     }
 
 }
+
+IEnumerator displayFinalTreasureFoundText()
+{
+    if (isGoldSoundPlaying)
+    {
+        yield break;
+    }
+
+    isGoldSoundPlaying = true;
+    Debug.Log("Treasure found");
+    mapPartFoundText.gameObject.SetActive(true);
+    mapPartFoundText.text = "Congratulations, you have found the sacred treasure ! You are now the greatest pirate of all time !";
+    AudioSource audioSource = GetComponent<AudioSource>();
+    audioSource.PlayOneShot(goldSoundEffect);
+
+    Waypoint.SetActive(false);
+    levelText.gameObject.SetActive(false);
+    goldText.gameObject.SetActive(false);
+    CenterMapImage1.SetActive(false);
+    CenterMapImage2.SetActive(false);
+    CenterMapImage3.SetActive(false);
+    CenterMapImage4.SetActive(false);
+    totalGoldInMapText.gameObject.SetActive(false);
+
+    yield return new WaitForSeconds(60);
+    mapPartFoundText.gameObject.SetActive(false);
+
+    isGoldSoundPlaying = false;
+}
+
+IEnumerator displayInsufficientMapParts()
+{
+    Debug.Log("Insufficient map parts");
+    mapPartFoundText.text = "I don't know what this is... I need to find all the map parts first";
+    mapPartFoundText.gameObject.SetActive(true);
+    yield return new WaitForSeconds(5);
+    mapPartFoundText.gameObject.SetActive(false);
+}
+
 }

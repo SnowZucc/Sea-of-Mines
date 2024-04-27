@@ -7,10 +7,13 @@ public class Boat : MonoBehaviour
     public GameObject TPPointBoat;
     public GameObject TPPointExterior;
     private bool isOnBoat = false;
+    public AudioClip splashSoundEffect;
+    public AudioClip woodSoundEffect;
 
     // Update is called once per frame
     void Update()
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         float distance = Vector3.Distance(transform.position, player.transform.position);
 
@@ -21,6 +24,7 @@ public class Boat : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E) && !isOnBoat)
                 {
                     isOnBoat = true;
+                    audioSource.PlayOneShot(woodSoundEffect);
                     Debug.Log("Clicked E");
                     InputManager inputManager = player.GetComponent<InputManager>();
                     InputManager inputManagerBoat = GetComponent<InputManager>();
@@ -46,6 +50,7 @@ public class Boat : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.E) && isOnBoat)
                 {
                     isOnBoat = false;
+                    audioSource.PlayOneShot(splashSoundEffect);
                     Debug.Log("Re-Clicked E");
                     InputManager inputManager = player.GetComponent<InputManager>();
                     InputManager inputManagerBoat = GetComponent<InputManager>();
