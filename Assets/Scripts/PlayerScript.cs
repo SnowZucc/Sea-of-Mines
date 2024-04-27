@@ -96,10 +96,17 @@ public class PlayerScript : MonoBehaviour
         // Found map part function
         if (closestMapPartDistance <= distanceToMine)
         {
-            Destroy(closestMapPartObject);
-            mapPart += 1;
-            StartCoroutine(displayTreasureFoundText());
-            mapPartText.text = "Map parts " + mapPart.ToString();
+            if (level >= 3)
+                {
+                Destroy(closestMapPartObject);
+                mapPart += 1;
+                StartCoroutine(displayTreasureFoundText());
+                mapPartText.text = "Map parts " + mapPart.ToString();
+                }
+            else
+            {
+                StartCoroutine(displayInsufficientLevel());
+            }
         }
     }
 
@@ -135,6 +142,14 @@ IEnumerator MineGoldOverTime(Gold goldScript)
 }
 
 // Display level up / treasure found texte coroutines
+IEnumerator displayInsufficientLevel()
+{
+    levelUpText.text = "You need to be at least level 3 to collect map parts!";
+    levelUpText.gameObject.SetActive(true);
+    yield return new WaitForSeconds(5);
+    levelUpText.gameObject.SetActive(false);
+}
+
 IEnumerator displayLevelUpText()
 {
     levelUpText.text = "You have advanced to the level " + level.ToString() + "!";

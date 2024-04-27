@@ -3805,7 +3805,7 @@ Transform:
   m_GameObject: {fileID: 289210081}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 869.68, y: -2.45, z: -335}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20086,7 +20086,7 @@ Transform:
   m_GameObject: {fileID: 1496801696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 883.28, y: -2.05, z: -338.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23188,7 +23188,7 @@ MonoBehaviour:
   _dropDetailHeightBasedOnWaves: 0.2
   _lodDataResolution: 384
   _geometryDownSampleFactor: 2
-  _lodCount: 6
+  _lodCount: 5
   _extentsSizeMultiplier: 100
   _simSettingsAnimatedWaves: {fileID: 0}
   _createSeaFloorDepthData: 1
