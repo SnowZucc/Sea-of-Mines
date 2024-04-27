@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Crest;
 public class Boat : MonoBehaviour
 {
     public GameObject intText;
@@ -50,7 +50,10 @@ public class Boat : MonoBehaviour
                     InputManager inputManager = player.GetComponent<InputManager>();
                     InputManager inputManagerBoat = GetComponent<InputManager>();
 
+                    SimpleFloatingObject simpleFloatingObject = GetComponent<SimpleFloatingObject>();
+                    simpleFloatingObject.enabled = false;
                     player.transform.position = TPPointExterior.transform.position;
+                    simpleFloatingObject.enabled = true;
                     
                     if (inputManager != null)
                     {
