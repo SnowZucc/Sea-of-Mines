@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gold
   - Map part
+  - Treasure
   layers:
   - Default
   - TransparentFX
