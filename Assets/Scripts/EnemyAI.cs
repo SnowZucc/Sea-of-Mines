@@ -32,10 +32,10 @@ void Update()
         // If the agent has reached its destination or doesn't have a path yet
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            Vector3 randomDirection = Random.insideUnitSphere * 1000;
+            Vector3 randomDirection = Random.insideUnitSphere * 200;
             Debug.Log("New direction : " + randomDirection);
             randomDirection += transform.position;
-            NavMesh.SamplePosition(randomDirection, out hit, 1000, NavMesh.AllAreas);
+            NavMesh.SamplePosition(randomDirection, out hit, 200, NavMesh.AllAreas);
             agent.SetDestination(hit.position);
             Debug.Log("New destination : " + hit.position);
         }
