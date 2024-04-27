@@ -23,6 +23,8 @@ public class PlayerScript : MonoBehaviour
     public TextMeshProUGUI mapPartFoundText;
     public TextMeshProUGUI allMapsPartsFoundText;
 
+        public TextMeshProUGUI totalGoldInMapText;
+
     public GameObject CenterMapImage1;
     public GameObject CenterMapImage2;
     public GameObject CenterMapImage3;
@@ -34,6 +36,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject RightMapImage4;
     public GameObject Waypoint;
     public GameObject closestGoldObject { get; private set; }
+
+    public float totalGoldInMap;
 
 
     // Update is called once per frame
@@ -106,6 +110,34 @@ public class PlayerScript : MonoBehaviour
             else
             {
                 StartCoroutine(displayInsufficientLevel());
+            }
+        }
+
+        
+        // Total gold in map calculator with every exception
+        totalGoldInMap = 0;
+
+        goldObjects = GameObject.FindGameObjectsWithTag("Gold");
+
+        foreach (GameObject goldObject in goldObjects) {
+            Gold goldScript = goldObject.GetComponent<Gold>();
+            if (goldScript != null) {
+                totalGoldInMap += goldScript.remainingGold;
+            }
+        }
+
+        if (goldObjects.Length == 0) {
+            totalGoldInMap = 0;
+        }
+
+        if (totalGoldInMapText != null) {
+            totalGoldInMapText.text = "Gold left in Map : " + totalGoldInMap.ToString();
+            if (totalGoldInMap == 0)
+            {
+                if (level < 3)
+                {
+                    totalGoldInMapText.text = "Game over : no more gold in the map! You cannot levelup and collect map parts anymore";
+                }
             }
         }
     }
