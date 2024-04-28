@@ -53,6 +53,7 @@ public class PlayerScript : MonoBehaviour
     public AudioClip paperSoundEffect;
     public AudioClip goldSoundEffect;
     private bool isGoldSoundPlaying = false;
+    private int nextSpeedUpgrade = 0;
 
 
     // Update is called once per frame
@@ -87,7 +88,8 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(displayLevelUpText());
                 GameObject playerBoat = GameObject.FindWithTag("Player boat");
                 PlayerLocomotion playerLocomotion = playerBoat.GetComponent<PlayerLocomotion>();
-                playerLocomotion.movementSpeed +=2;
+                nextSpeedUpgrade += 1;
+                playerLocomotion.movementSpeed +=nextSpeedUpgrade;
 
             }
         }
